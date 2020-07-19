@@ -1,5 +1,6 @@
 <?php
   require_once('dbc.php');
+
   //取得したデータ
   $blogData=getAllBlog();
 ?>
