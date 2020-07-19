@@ -27,7 +27,7 @@ $sql = 'INSERT INTO
         VALUES
           (:title, :content, :category, :publish_status)';
 $dbh=dbConection();
-
+$dbh=beginTransaction();
 try{
   $stmt=$dbh->prepare($sql);
   $stmt->bindValue(':title',$blogs['title'], PDO::PARAM_STR);
@@ -35,8 +35,10 @@ try{
   $stmt->bindValue(':category',$blogs['category'], PDO::PARAM_INT);
   $stmt->bindValue(':publish_status',$blogs['publish_status'], PDO::PARAM_INT);
   $stmt->execute();
-  echo 'ブログを投稿しました。'
+  echo 'ブログを投稿しました。';
 }catch(PDOException $e){
+  exit($e);
+  $dbh->rollBack();
   exit($e);
 }
 
