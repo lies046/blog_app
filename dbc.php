@@ -1,5 +1,6 @@
 <?php
 
+require_once('env.php');
 Class Dbc
 {
 
@@ -9,11 +10,13 @@ Class Dbc
   //引数:なし
   //返り値:接続結果を返す
   protected function dbConection(){
-      
-    $dns='mysql:host=localhost;dbname=blog_app;charset=utf8;';
-    $user = 'root';
-    $pass = '';
-    
+
+    $host=DB_HOST;
+    $dbname=DB_NAME;
+    $user = DB_USER;
+    $pass = DB_PASS;
+    $dns="mysql:host=$host;dbname=$dbname;charset=utf8;";
+
     try{
       $dbh= new PDO($dns, $user, $pass,[
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,

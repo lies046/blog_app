@@ -18,15 +18,15 @@
   <p><a href="/form.html">新規作成</a></p>
   <table>
     <tr>
-      <th>No</th>
       <th>タイトル</th>
       <th>カテゴリ</th>
+      <th>投稿日時</th>
     </tr>
     <?php foreach($blogData as $column) : ?>
     <tr>
-      <td><?php echo $column['id'];?></td>
       <td><?php echo $column['title'];?></td>
       <td><?php echo $blog->setCategoryName($column['category']);?></td>
+      <td><?php echo $column['post_at'];?></td>
       <td><a href="/detail.php?id=<?php echo $column['id']; ?>">詳細</a></td>
       <td><a href="/update_form.php?id=<?php echo $column['id']; ?>">編集</a></td>
     </tr>
