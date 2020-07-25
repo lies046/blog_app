@@ -69,5 +69,24 @@ Class Dbc
 
     return $result;
   }
+
+  public function delete($id){
+    if(empty($id)){
+      exit('IDが不正です');
+    }
+    
+    $dbh = $this->dbConection();
+    
+    //SQLを準備 プレースホルダー
+    $stmt = $dbh->prepare("DELETE FROM $this->table_name WHERE id = :id");
+    $stmt->bindValue(':id', (int)$id, PDO::PARAM_INT);
+    
+    //SQLの実行
+    $stmt->execute();
+    
+    echo 'ブログを削除しました！';
+
+    return $result;
+  }
 }
 ?>

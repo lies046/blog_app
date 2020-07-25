@@ -5,6 +5,10 @@
 
   //取得したデータ
   $blogData=$blog->getAll();
+
+  function h($s){
+    return htmlspecialchars($s, ENT_QUOTES, "UTF-8");
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,11 +28,12 @@
     </tr>
     <?php foreach($blogData as $column) : ?>
     <tr>
-      <td><?php echo $column['title'];?></td>
-      <td><?php echo $blog->setCategoryName($column['category']);?></td>
-      <td><?php echo $column['post_at'];?></td>
+      <td><?php echo h($column['title']);?></td>
+      <td><?php echo h($blog->setCategoryName($column['category']));?></td>
+      <td><?php echo h($column['post_at']);?></td>
       <td><a href="/detail.php?id=<?php echo $column['id']; ?>">詳細</a></td>
       <td><a href="/update_form.php?id=<?php echo $column['id']; ?>">編集</a></td>
+      <td><a href="/blog_delete.php?id=<?php echo $column['id']; ?>">削除</a></td>
     </tr>
     <?php endforeach; ?>
   </table>
